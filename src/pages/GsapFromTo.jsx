@@ -1,8 +1,32 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+
 const GsapFromTo = () => {
   // TODO: Implement the gsap.fromTo() method
-  const GsapTo = () => {
-    
-  }
+   useGSAP(() => {
+      const redBox = document.getElementById("red-box");
+      gsap.fromTo(
+         redBox,
+         {
+          x: 0,
+          rotation: 0,
+          borderRadius: '0%'
+         },
+         {
+            x: 400,
+            y: 200,
+            // repeat: -1,
+            // yoyo: true,
+            borderRadius: '50%',
+            rotation: 360,
+            duration: 2,
+            ease: 'bounce.out',
+            onComplete: () => {
+               console.log("Animation complete!");
+            },
+         }
+      );
+   }, []);
 
   return (
     <main>
@@ -36,8 +60,10 @@ const GsapFromTo = () => {
       </p>
 
       <div className="mt-20">
-        <div id="red-box" className="w-20 h-20 bg-red-500 rounded-lg" />
+        <div id="red-box" className="w-20 h-20 bg-red-500 rounded-lg ml-0" />
       </div>
+      <div className="w-20 h-1 bg-white mb-10"></div>
+      <div className="ml-[400px] w-20 h-1 bg-white mt-[200px]"></div>
     </main>
   );
 };
