@@ -1,10 +1,3 @@
-<div align="center">
-    <a href="https://gsap-crash-course.vercel.app" target="_blank">
-      <img src="public/preview.png" alt="Project Banner">
-    </a>
-  <h3 align="center">GSAP Workshop (Starter)</h3>
-</div>
-
 ##  <br /> 📋 <a name="table">Table of Contents</a>
 
 - ✨ [Introduction](#introduction)
@@ -14,7 +7,7 @@
 
 ##  <br /> <a name="introduction">✨ Introduction</a>
 
-Simple GSAP workshop showcasing various primary animations. GSAP (GreenSock Animation Platform) is a framework-agnostic JavaScript animation library used to create fluid and engaging animations.
+Simple GSAP showcasing various primary animations. GSAP (GreenSock Animation Platform) is a framework-agnostic JavaScript animation library used to create fluid and engaging animations.
 
 
 ##  <br /> <a name="tech-stack">⚙️ Tech Stack</a>
@@ -47,8 +40,8 @@ Make sure you have the following installed on your machine:
 
 
 ```bash
-git clone https://github.com/JavaScript-Mastery-Pro/gsap-cc-starter.git
-cd gsap-cc-starter
+git clone https://github.com/jigarbhoye04/GSAP.git
+cd GSAP
 ```
 
 
