@@ -1,5 +1,67 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useRef,useState } from "react";
+
 const GsapTimeline = () => {
-  // TODO: Implement the gsap timeline
+  const yellowBox = useRef(null);
+  const timelineRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useGSAP(() => {
+    const timeline = gsap.timeline({
+      defaults: {
+        duration: 1,
+        ease: "power1.inOut",
+      },
+      repeat: -1,
+      repeatDelay: 1,
+      yoyo: true,
+    });
+    timeline.to(yellowBox.current, {
+      x: 250,
+      rotation: 360,
+      borderRadius: "50%",
+      ease: "elastic.out(1, 0.3)",
+      onComplete: () => {
+        console.log("Animation complete!");
+      }
+    })
+    timeline.to(yellowBox.current,{
+      x: 500,
+      y: 50,
+      backgroundColor: "green",
+      scale: 1.5,
+      rotation: 360,
+      borderRadius: "0%",
+      onComplete: () => {
+        console.log("Second animation complete!");
+      }
+    })
+    timeline.to(yellowBox.current,{
+      y: 100,
+      backgroundColor: "red",
+      scale: 1.2,
+      rotation: 360,
+      borderRadius: "50%",
+      ease: "circ.inOut",
+      onComplete: () => {
+        console.log("Third animation complete!");
+      }
+    });
+    timelineRef.current = timeline;
+  },[]);
+
+  const playPauseTimeline = () => {
+    if(!timelineRef.current) return;
+    const timeline = timelineRef.current;
+    if (timeline.paused()) {
+      timeline.play();
+      setIsPlaying(true);
+    } else {
+      timeline.pause();
+      setIsPlaying(false);
+    }
+  };
 
   return (
     <main>
@@ -35,9 +97,16 @@ const GsapTimeline = () => {
       </p>
 
       <div className="mt-20 space-y-10">
-        <button onClick={() => {}}>Play/Pause</button>
+        <button
+          onClick={playPauseTimeline}
+          className={`px-4 py-2 font-semibold rounded border border-neutral-700 ${
+            isPlaying ? "bg-yellow-600" : "bg-green-800"
+          }`}
+        >
+          {isPlaying ? "Pause" : "Play"}
+        </button>
 
-        <div id="yellow-box" className="w-20 h-20 bg-yellow-500 rounded-lg" />
+        <div ref={yellowBox} id="yellow-box" className="w-20 h-20 bg-yellow-500 rounded-lg" />
       </div>
     </main>
   );
