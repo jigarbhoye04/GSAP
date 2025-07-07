@@ -1,5 +1,22 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+
 const GsapFrom = () => {
   // TODO: Implement the gsap.from() method
+  useGSAP(()=>{
+    const greenBox = document.getElementById("green-box");
+    gsap.from(greenBox,{
+      x: 200,
+      // y: 100,
+      repeat: -1,
+      rotation: 360,
+      // yoyo: true,
+      duration: 2,
+      onComplete: () => {
+        console.log("animation complete!");
+      }
+    })
+  },[]);
 
   return (
     <main>
