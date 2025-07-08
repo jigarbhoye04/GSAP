@@ -15,7 +15,7 @@ const GsapStagger = () => {
       repeat: -1,
       borderRadius: '100%',
       duration: 1,
-      // yoyo: true,
+      yoyo: true,
       // stagger: 0.5
       stagger: {
         amount: 1.5,
