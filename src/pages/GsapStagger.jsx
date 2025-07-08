@@ -1,5 +1,31 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useRef } from "react";
+
 const GsapStagger = () => {
   // TODO: Implement the gsap.stagger() method
+  const staggerBox = useRef(null);
+  const staggerBoxDOM = document.querySelectorAll('.stagger-box');
+  useGSAP(()=>{
+    // gsap.to('.stagger-box',{
+    // gsap.to(staggerBox.current,{ //takes last element(which is current)
+    gsap.to(staggerBoxDOM,{ 
+      y: 250,
+      rotation: 360,
+      repeat: -1,
+      borderRadius: '100%',
+      duration: 1,
+      // yoyo: true,
+      // stagger: 0.5
+      stagger: {
+        amount: 1.5,
+        grid: [1,1],
+        axis: 'y',
+        ease: 'circ.in',
+        from: 'random'
+      }
+    })
+  },[])
 
   return (
     <main>
@@ -32,13 +58,13 @@ const GsapStagger = () => {
 
       <div className="mt-20">
         <div className="flex gap-5">
-          <div className="w-20 h-20 bg-indigo-200 rounded-lg stagger-box" />
-          <div className="w-20 h-20 bg-indigo-300 rounded-lg stagger-box" />
-          <div className="w-20 h-20 bg-indigo-400 rounded-lg stagger-box" />
-          <div className="w-20 h-20 bg-indigo-500 rounded-lg stagger-box" />
-          <div className="w-20 h-20 bg-indigo-600 rounded-lg stagger-box" />
-          <div className="w-20 h-20 bg-indigo-700 rounded-lg stagger-box" />
-          <div className="w-20 h-20 bg-indigo-800 rounded-lg stagger-box" />
+          <div ref={staggerBox} className="w-20 h-20 bg-indigo-200 rounded-lg stagger-box" />
+          <div ref={staggerBox} className="w-20 h-20 bg-indigo-300 rounded-lg stagger-box" />
+          <div ref={staggerBox} className="w-20 h-20 bg-indigo-400 rounded-lg stagger-box" />
+          <div ref={staggerBox} className="w-20 h-20 bg-indigo-500 rounded-lg stagger-box" />
+          <div ref={staggerBox} className="w-20 h-20 bg-indigo-600 rounded-lg stagger-box" />
+          <div ref={staggerBox} className="w-20 h-20 bg-indigo-700 rounded-lg stagger-box" />
+          <div ref={staggerBox} className="w-20 h-20 bg-indigo-800 rounded-lg stagger-box" />
         </div>
       </div>
     </main>
