@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { useMediaQuery } from "react-responsive";
 
 const Hero = () => {
-   const videoRef = useRef(null);
+   const videoRef = useRef();
    const isMobile = useMediaQuery({ maxWidth: 768 });
 
    useGSAP(() => {
@@ -15,10 +15,10 @@ const Hero = () => {
       heroSplit.chars.forEach((char) => char.classList.add("text-gradient"));
 
       gsap.from(heroSplit.chars, {
-         yPercent: 80,
+         yPercent: 100,
          duration: 1.8,
          ease: "expo.out",
-         stagger: 0.04,
+         stagger: 0.05,
       });
 
       gsap.from(paraSplit.lines, {
@@ -27,24 +27,26 @@ const Hero = () => {
          duration: 1.8,
          ease: "expo.out",
          stagger: 0.05,
-         delay: 0.8,
+         delay: 1,
       });
 
-      gsap.timeline({
+      gsap
+         .timeline({
             scrollTrigger: {
                trigger: "#hero",
                start: "top top",
-               end: "bottom top", // when bottom hits top of viewport
+               end: "bottom top",
                scrub: true,
             },
          })
          .to(".right-leaf", { y: 200 }, 0)
-         .to(".left-leaf", { y: -200 }, 0);
+         .to(".left-leaf", { y: -200 }, 0)
+         .to(".arrow", { y: 100 }, 0);
 
       const startValue = isMobile ? "top 50%" : "center 60%";
-      const endValue = isMobile ? "120% top" : "center 60%";
+      const endValue = isMobile ? "120% top" : "bottom top";
 
-      const tl = gsap.timeline({
+      let tl = gsap.timeline({
          scrollTrigger: {
             trigger: "video",
             start: startValue,
@@ -75,6 +77,7 @@ const Hero = () => {
                className="right-leaf"
             />
             <div className="body">
+               <img src="/images/arrow.png" alt="arrow" className="arrow" />
                <div className="content">
                   <div className="space-y-5 hidden md:block">
                      <p>Cool. Crisp. Refreshing.</p>
@@ -88,9 +91,7 @@ const Hero = () => {
                         Timeless classics and innovative creations await you. To
                         delight your senses.
                      </p>
-                     <a href="#cocktails" className="btn">
-                        View Cocktails
-                     </a>
+                     <a href="#cocktails">View cocktails</a>
                   </div>
                </div>
             </div>
@@ -98,10 +99,10 @@ const Hero = () => {
          <div className="video absolute inset-0">
             <video
                ref={videoRef}
-               src="/videos/input.mp4"
                muted
                playsInline
                preload="auto"
+               src="/videos/output.mp4"
             />
          </div>
       </>
